@@ -19,13 +19,33 @@ class Library:
         self.patrons = []
 
     def add_book(self, new_book):
-        # Creating a Book
-        new_book = Book(input("Enter the title of book:"),int(input('Enter book_id :')))
-        # Adding the book to database
+        # The library just catches the book and puts it on the shelf.
+        # No inputs, no prints. Pure logic.
         self.books.append(new_book)
 
     def register_patron(self, new_patron):
-        # Creating a Patron
-        new_patron = Patron(input("Enter Name :"),int(input("Enter user id :")))
-        # Adding the Patron to database
+        # Hard lesson , This is only brain not ears and eyes or mouth.
         self.patrons.append(new_patron)
+
+    def borrow_book(self,patron_id,target_book_id):
+        # check if given values exist in database or not
+        temp_patron,temp_book = None,None
+        for el in self.patrons:
+            if el.user_id == patron_id:
+                temp_patron = el
+                break
+        for el  in self.books:
+            if el.book_id == target_book_id:
+                temp_book = el
+                break
+
+        if temp_patron == None:
+            return "Error: Patron not found"
+        elif temp_book == None:
+            return "Error: Book not registered in library"
+        elif temp_book.book_availability == False:
+            return "Sorry, that book is already checked out"
+        else:
+            temp_patron.backpack.append(temp_book)
+            temp_book.book_availability = False
+            return "Book succesfully checked out"
