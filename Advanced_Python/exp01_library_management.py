@@ -38,14 +38,41 @@ class Library:
             if el.book_id == target_book_id:
                 temp_book = el
                 break
-
+        # if else logic for error handling.
         if temp_patron == None:
             return "Error: Patron not found"
         elif temp_book == None:
             return "Error: Book not registered in library"
-        elif temp_book.book_availability == False:
+        elif not temp_book.book_availability:
             return "Sorry, that book is already checked out"
         else:
             temp_patron.backpack.append(temp_book)
             temp_book.book_availability = False
             return "Book succesfully checked out"
+
+    def return_book(self,patron_id,return_book_id):
+        # check if given values exist in database or not
+        temp_patron,temp_book = None,None
+
+        for el in self.patrons:
+            if el.user_id == patron_id:
+                temp_patron = el
+                break
+        for el in self.books:
+            if el.book_id == return_book_id:
+                temp_book = el
+                break
+
+        #if else logic for error handling and operation manipulation
+        if temp_patron is None:
+            return "Error: Patron not found"
+        elif temp_book is None:
+            return "Error: Book not registered with library"
+        # if person has more than one book in backpack and there is not your book inside it.
+        elif temp_book not in temp_patron.backpack:
+            return "Error: The book is not inside the backpack"
+        else:
+            temp_patron.backpack.remove(temp_book)
+            temp_book.book_availability = True
+            return "Book successfully returned"
+        
