@@ -76,13 +76,13 @@ class Library:
             temp_patron.backpack.remove(temp_book)
             temp_book.book_availability = True
             return "Book successfully returned"
-        
+            
 my_college_library = Library()
 while True:
     print("---WELCOME TO LIBRARY--- \nChoose one of the following service by entering the serial number")
 
     try:
-        choice = int(input("1.Add Book\n2.Register Patron\n3.Borrow Book\n4.Return Book\n5.exit"))
+        choice = int(input("1.Add Book\n2.Register Patron\n3.Borrow Book\n4.Return Book\n5.Display list of Patrons\n6.exit\nchoice: "))
         if choice == 1:
             fresh_book = Book(input("Enter the title of Book: "),int(input("Enter Book ID: ")))
             print(my_college_library.add_book(fresh_book))
@@ -97,9 +97,11 @@ while True:
         elif choice == 4:
             print(my_college_library.return_book(int(input("Enter Patron ID: ")),int(input("Enter book ID of book you want to return: "))))
         
-        elif choice == 5:
+        elif choice == 6:
             break
-
+        
+        elif choice == 5:
+            print(my_college_library.patrons)
         else:
             print("Error: Please enter valid service number.")
 
