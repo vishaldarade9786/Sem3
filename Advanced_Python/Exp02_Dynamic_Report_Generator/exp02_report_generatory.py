@@ -21,10 +21,11 @@ class Report:
     
     def __call__(self,template_name):
         template_func = self.get_template(template_name)
-        if type(template_func) == str:
-            return f'{template_name} template not found.'
-        else:
+        if callable(template_func):
             return template_func(self)
+        else:
+            return f"{template_name} template not found."
+        
 
 def bold_text(func):
         def wrapper(report_instance):
