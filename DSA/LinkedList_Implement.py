@@ -1,7 +1,7 @@
 class Node:
     def __init__(self,data):
         self.data = data
-        self.next = None
+        self.next: "Node | None" = None
 
 class Singly_Linked_List:
     def __init__(self):
@@ -30,15 +30,16 @@ class Singly_Linked_List:
             node = Node(value)
             while current_position < position-1:
                 current_position += 1
-                if temp_node.next is None:break
+                if temp_node.next is None:
+                    break
                 temp_node = temp_node.next
             node.next = temp_node.next
             temp_node.next = node
     def display(self):
-        ans = ''
+        ans = []
         pointer = self.head
         while pointer is not None:
-            ans = f"{ans} => {pointer.data} "
+            ans.append(str(pointer.data))
             pointer = pointer.next
-        return ans
+        return '=>'.join(ans)
 
