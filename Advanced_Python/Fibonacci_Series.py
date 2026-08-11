@@ -1,16 +1,13 @@
 # Fibonacci series is a series in which the nubmer is sum of previous two numbers
 def Find_Fibonacci(n):
-    if n == 2:
-        return [0,1]
-    elif n == 1:
-        return [0]
-    elif n <= 0:
+    fibonacci_seq = [0,1]
+    if n <= 0:
         return []
-    else:
-        fibonacci_seq = [0,1]
-        while len(fibonacci_seq) < n:
-            fibonacci_seq.append(fibonacci_seq[-1]+fibonacci_seq[-2])
-        return fibonacci_seq
+    if n == 1:
+        return [0]
+    while len(fibonacci_seq) < n:
+        fibonacci_seq.append(fibonacci_seq[-1]+fibonacci_seq[-2])
+    return fibonacci_seq
 if __name__ == "__main__":
     while True:
         print("--- Menu ---")

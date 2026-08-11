@@ -40,8 +40,6 @@ if __name__ == "__main__":
         print("4.exit")
         try:
             choice = int(input("Enter serial No. of your choice :"))
-            
-        
             if choice == 4:
                 print("Exiting the program Gracefully.")
                 break
