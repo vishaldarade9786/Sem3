@@ -9,7 +9,7 @@ def Tabulation_Fibonacci(n):
         fibonacci_seq.append(fibonacci_seq[-1] + fibonacci_seq[-2])
     return fibonacci_seq[-1]
 
-def Memoization_Fibonacci(n , memo=None):
+def Memoization_Fibonacci(n ,memo=None)-> int:
     if memo is None:
         memo = {}
     if n == 0:
@@ -18,8 +18,8 @@ def Memoization_Fibonacci(n , memo=None):
         return 1
     elif n in memo:
         return memo[n]
-    elif n not in memo:
-        ans = int(Memoization_Fibonacci(n-1,memo)) + int(Memoization_Fibonacci(n-2,memo))
+    else:
+        ans = Memoization_Fibonacci(n-1,memo) + Memoization_Fibonacci(n-2,memo)
         memo[n] = ans
         return memo[n]
     
