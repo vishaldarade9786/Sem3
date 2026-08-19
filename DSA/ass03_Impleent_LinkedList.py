@@ -2,7 +2,6 @@ class Node:
     def __init__(self,data):
         self.data = data
         self.next: 'Node | None' = None
-
 class Singly_Linked_List:
     def __init__(self):
         self.head = None  
@@ -10,7 +9,6 @@ class Singly_Linked_List:
         node = Node(value)
         node.next = self.head
         self.head = node
-
     def display(self):
         if self.head is None:
             return f"The Linked List is Empty"
@@ -22,8 +20,6 @@ class Singly_Linked_List:
                 pointer = pointer.next
             ans.append("NULL")
             return '=>'.join(ans)
-
-
 if __name__ == "__main__":
     library_books = Singly_Linked_List()
     while True:
