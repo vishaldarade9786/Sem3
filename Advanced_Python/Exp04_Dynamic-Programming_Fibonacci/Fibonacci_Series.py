@@ -7,7 +7,7 @@ def Tabulation_Fibonacci(n):
         return 1
     while len(fibonacci_seq) <= n:
         fibonacci_seq.append(fibonacci_seq[-1] + fibonacci_seq[-2])
-    return fibonacci_seq[-1]
+    return fibonacci_seq
 
 def Memoization_Fibonacci(n ,memo=None)-> int:
     if memo is None:
