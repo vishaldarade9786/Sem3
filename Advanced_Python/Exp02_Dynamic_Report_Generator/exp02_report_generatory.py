@@ -26,11 +26,10 @@ class Report:
         else:
             return f"{template_name} template not found."
         
-
 def bold_text(func):
         def wrapper(report_instance):
             raw_text = func(report_instance)
-            return f'***{raw_text}***'
+            return f'**{raw_text}**'
         return wrapper
 
 def simple_template(report_instance):
@@ -39,20 +38,34 @@ def simple_template(report_instance):
 
 @bold_text
 def fancy_template(report_instance):
-    return f'FANCY REPORT: {report_instance.title} | Data: {report_instance.content}'
+    return f'{report_instance.title} | Data: {report_instance.content}'
 
 if __name__=="__main__":
     Report.add_template("simple",simple_template)
     Report.add_template("fancy",fancy_template)
+    current_report = None
 
-    library_report = Report("May 2026 Library Summary","50 new users registered.")
+    while True:
+        library_report = Report("May 2026 Library Summary","50 new users registered.")
+        print("\n\n--- MENU ---\n")
+        print("1.Simple Report")
+        print("2.Fancy Report")
+        print("3.Exit")
+        choice = int(input("Enter your choice:\n"))
 
-    print("\n--- Testing Standart Output ---")
-    print(library_report)
+        if choice == 3:
+            print("Exiting Gracefully")
+            break
+        if choice == 1:
+            print(f"Simple Report : {library_report("simple")}")
+        elif choice == 2:
+            print(f"Fancy Report : {library_report("fancy")}")
+    # print("\n--- Testing Standart Output ---")
+    # print(library_report)
 
-    print("\n--- Testing Decorated Fancy Template ---")
-    print(library_report("fancy"))
+    # print("\n--- Testing Decorated Fancy Template ---")
+    # print(library_report("fancy"))
 
-    print("\n--- Testing Defensive Error Handling ---")
-    print(library_report("ghost_template"))
-    print(Report.templates)
+    # print("\n--- Testing Defensive Error Handling ---")
+    # print(library_report("ghost_template"))
+    # print(Report.templates)
