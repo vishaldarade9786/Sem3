@@ -1,7 +1,7 @@
 class Node:
     def __init__(self,data):
-        self.left = None
-        self.right = None
+        self.left: 'Node | None' = None
+        self.right: 'Node | None' = None
         self.data = data
 
 def inorder(root):
